@@ -4,41 +4,50 @@ const MEDIUM = 2
 const HARD = 3
 class Game {
 
+    constructor() {
+        this.easyWordList = this.filterWordByLength(0, 5);
+        this.mediumWordList = this.filterWordByLength(6, 7);
+        this.hardWordList = this.filterWordByLength(8, 15555);
+    }
+
     getRandomWord(difficulty) {
         return this.findWord(difficulty);
     }
 
     findWord(diff) {
-        const newarray = []
         switch (diff) {
             case EASY : {
-                for (let i = 0; i < WORD_LIST.length; i++) {
-                    if (WORD_LIST[i].length <= 5) {
-                        newarray.push(WORD_LIST[i])
-                    }
-                }
-                return newarray[this.random(newarray)]
+                const chosenIndex = this._getRandomIndex(this.easyWordList);
+                return this.easyWordList[chosenIndex];
             }
             case MEDIUM : {
-                for (let i = 0; i < WORD_LIST.length; i++) {
-                    if (WORD_LIST[i].length > 5 && WORD_LIST[i].length <= 7) {
-                        newarray.push(WORD_LIST[i])
-                    }
-                }
-                return newarray[this.random(newarray)]
+                const chosenIndex = this._getRandomIndex(this.mediumWordList);
+                return this.mediumWordList[chosenIndex];
             }
             case HARD : {
-                for (let i = 0; i < WORD_LIST.length; i++) {
-                    if (WORD_LIST[i].length > 7) {
-                        newarray.push(WORD_LIST[i])
-                    }
-                }
-                return newarray[this.random(newarray)]
+                const chosenIndex = this._getRandomIndex(this.hardWordList);
+                return this.hardWordList[chosenIndex];
             }
         }
     }
 
-    random(array) {
+    /**
+     * Get a ....
+     * @param min non inclus
+     * @param max inclus
+     * @returns {*[]}
+     */
+    filterWordByLength(min, max) {
+        const filteredArray = []
+        for (let i = 0; i < WORD_LIST.length; i++) {
+            if (WORD_LIST[i].length >= min && WORD_LIST[i].length <= max) {
+                filteredArray.push(WORD_LIST[i])
+            }
+        }
+        return filteredArray;
+    }
+
+    _getRandomIndex(array) {
         return  Math.floor(Math.random() * array.length)
     }
 }

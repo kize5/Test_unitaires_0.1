@@ -9,20 +9,21 @@ let game = new Game()
 describe("Game engine test", function () {
 
 
-    describe("Is difficulty 1 return 5 of less letter", function () {
-        it("test if difficulty 1 return 5 or less letter", function () {
+    describe("Test easy difficulty", function () {
+        it("Word should have a length between 0 to 5", function () {
             expect(game.getRandomWord(EASY)).to.have.lengthOf.lessThanOrEqual(5)
         })
     })
 
-    describe("Is difficulty 2 return 6 or 7 letters word", function () {
-        it("test if difficulty 2 return 6 or 7 letters word", function () {
+    describe("Test medium difficulty", function () {
+        it("Word should have a length of 6 or 7 letters ", function () {
+            console.log(game.getRandomWord(MEDIUM))
             expect(game.getRandomWord(MEDIUM)).to.have.lengthOf.greaterThan(5).and.lengthOf.lessThanOrEqual(7)
         })
     })
 
-    describe("Is difficulty 3 return more than 7 letters word", function () {
-        it("test if difficulty 3 return more than 7 letters word", function () {
+    describe("Test hard difficulty", function () {
+        it("Word should have a length of more than 7 letters word", function () {
             expect(game.getRandomWord(HARD)).to.have.lengthOf.greaterThan(7);
         })
     })
