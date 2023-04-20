@@ -1,5 +1,5 @@
 name: Test
-Concurrency: production
+concurrency: production
 
 
 on:
